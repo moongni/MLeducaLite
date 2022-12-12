@@ -79,6 +79,6 @@ npm run deploy
 https://{사용자이름}.github.io/{레포지토리 이름}
 ```
 
-위 주소를 통해 웹브라우저를 통해 접근할 수 있다. 
+위 주소를 통해 웹브라우저를 통해 접근할 수 있습니다. 
 
 ![mleduca-lite](https://user-images.githubusercontent.com/88421322/207048303-783e17c4-a4b0-4613-a5b2-545ebb2fde42.png)

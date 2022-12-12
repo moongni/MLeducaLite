@@ -1,0 +1,30 @@
+.scrollhost {
+    width: 100%;
+    overflow: auto;
+}
+.disViable {
+    width: 100%;
+    overflow: auto;
+}
+.disViable::-webkit-scrollbar {
+    display: none;
+    visibility: hidden;
+}
+.scrollhost::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+.scrollhost::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+.scrollhost::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+.scrollhost::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}

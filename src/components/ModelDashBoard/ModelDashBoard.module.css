@@ -1,0 +1,89 @@
+@import "../../App.css";
+
+.container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+    height: 100%;
+    max-width: 16.25rem;
+    padding: 4rem 0;
+    margin: 0;
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-shadow-color: #e2e8f0;
+    --tw-shadow: var(--tw-shadow-colored);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    background-color: rgb(226 232 240 / var(--bg-opacity));
+    z-index: 20;
+}
+.open {
+    width: 16.25rem;
+}
+.close {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.container .modelInfo {
+    overflow-y: auto;
+    width: 100%;
+    height: 85%;
+}
+
+.container .modelInfo .h1 {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1.125rem/* 18px */;
+    line-height: 1.75rem/* 28px */;
+    font-weight: 600;
+    border-bottom-width: 2px;
+    border-color: rgb(148 163 184 / var(--border-opacity));
+}
+
+.container .modelTrain {
+    display: flex;
+    justify-content: center;
+    height: 15%;
+}
+.container .modelTrain .div {
+    display: flex;
+    align-items: center;
+}
+
+.container .modelTrain .div .button {
+    width: 9rem;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 1.125rem/* 18px */;
+    line-height: 1.75rem/* 28px */;
+    font-weight: 500;
+    background-color: rgb(134 239 172 / var(--bg-opacity));
+    border-radius: 0.5rem;
+
+    cursor: pointer;
+}
+.container .modelTrain .div .button:hover{
+    background-color: rgb(74 222 128 / var(--bg-opacity));
+}
+
+.center {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    opacity: 0.6;
+}
+
+.li {
+    list-style: none;
+    padding: 1rem 2rem;
+    text-align: center;
+    word-break: keep-all;
+}

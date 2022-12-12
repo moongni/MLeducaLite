@@ -1,0 +1,38 @@
+[
+    {
+        "title": "데이터 적재",
+        "description": "기계 학습의 데이터 셋를 불러옵니다.",
+        "imgUrl":"/img/loadData.png",
+        "pageUrl":"loadData"
+    },
+    {
+        "title": "데이터 전처리",
+        "description": "준비된 데이터 셋를 훈련 셋과 테스트 셋, 라벨과 특성을 나눕니다. 또한 각 특성 별 데이터 전처리를 지원합니다.",
+        "imgUrl":"/img/preprocessing.png",
+        "pageUrl":"preprocessing"
+    },
+    {
+        "title": "신경망 구성",
+        "description": "훈련할 모델의 레이어를 구성하고 컴파일과 파라미터를 설정할 수 있습니다.",
+        "imgUrl":"/img/setting.png",
+        "pageUrl":"setting"
+    },
+    {
+        "title": "학습",
+        "description": "신경망 구성에서 설정된 모델 또는 불러온 모델의 훈련을 진행합니다.",
+        "imgUrl":"/img/fit.png",
+        "pageUrl":"fit"
+    },
+    {
+        "title": "예측",
+        "description": "훈련이 완료된 모델을 통해 예측을 진행합니다.",
+        "imgUrl":"/img/predict.png",
+        "pageUrl":"predict"
+    },
+    {
+        "title": "분석",
+        "description": "훈련이 완료된 모델의 정확도, 손실값 등을 시각화해서 볼 수 있습니다.",
+        "imgUrl":"/img/analytic.png",
+        "pageUrl":"analytic"
+    }
+]

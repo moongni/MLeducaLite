@@ -1,0 +1,467 @@
+{
+  "Compile" : [
+    {
+      "id":1,
+      "title":"optimizer",
+      "info":[
+        {
+          "title":"sgd",
+          "description":{
+            "header":"확률적 경사 하강법",
+            "content":"랜덤하게 추출한 일부의 데이터를 사용해 기울기를 계산하고, 경사 하강 알고리즘을 적용하는 방법을 말한다. 학습률은 기울기에 따라 가중치를 조절하는 정도를 의미한다. 빠르게 최적점을 찾을 수 있지만 최적해에 대한 노이즈가 비교적 심하다는 단점이 존재한다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.sgd"
+          },
+
+          "params": [
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.1,
+              "step": 0.01
+            }
+          ]
+        }, 
+        {
+          "title":"momentum",
+          "description":{
+            "header":"모멘텀",
+            "content":"경사 하강법 최적화 알고리즘 중 한 종류로 물리학의 관성을 응용한 방식이다. 누적된 과거 기울기가 지향하고 있는 방향을 현재 기울기에 보정하려는 방식이다. 가중치를 보정하는 방향이 순차적으로 일어나는 지그재그의 현상이 줄어든다. ",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.momentum"
+          },
+          "params": [
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.1,
+              "step": 0.01
+            },            
+            {
+              "kind":"float",
+              "title":"momentum",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.1,
+              "step": 0.01
+            },
+            {
+              "kind":"bool",
+              "title":"useNesterov",
+              "list": ["true", "false"],
+              "defaultValue": false
+            }
+          ]
+        },
+        {
+          "title":"adagrad",
+          "description":{
+            "header":"아다그라드 (Adaptive Gradient)",
+            "content":"아다그라드는 가중치 학습이 진행됨에 따라 학습률을 조절하는 옵션이 추가된 최적화 방법이다. 학습이 진행될 때 기울기의 제곱합을 이용해 많이 변화하지 않은 가중치들은 학습률을 증가시켜 빠르게 손실값을 줄이며, 반대로 많이 변화한 가중치들은 학습률을 낮춰 작은 크기로 세밀하게 값을 조정해 최적점을 찾는다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.adagrad"
+          },
+          "params": [
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.1,
+              "step": 0.01
+            },
+            {
+              "kind":"float",
+              "title":"initialAccumulatorValue",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.1,
+              "step": 0.01
+            }           
+          ]
+        }, 
+        {
+          "title":"rmsprop",
+          "description":{
+            "header":"알엠에스프롭",
+            "content":"알엠에스프롭은 아다그라드가 학습이 진행되며 학습률이 감소하다 나중에 0으로 수렴하여 학습이 더 이상 진행되지 않는 단점을 보완한 최적화 알고리즘이다. 가중치 별 학습률을 조절하되 기울기를 변경 빈도로 누적하지 않고 지수이동평균을 활용하여 가장 최근 기울기 변화는 많이 반영하고 먼 이전의 기울기 변화는 조금만 반영하는 기법이다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.rmsprop"
+          },
+          "params":[
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.002,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"decay",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.9,
+              "step": 0.1
+            },
+            {
+              "kind":"float",
+              "title":"momentum",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.0,
+              "step": 0.01
+            },
+            {
+              "kind":"float",
+              "title":"epsilon",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.00001,
+              "step": 0.000001
+            },
+            {
+              "kind":"bool",
+              "title":"centered",
+              "list": ["true", "false"],
+              "defaultValue":false
+            }
+          ]
+        },
+        {
+          "title":"adadelta",
+          "description":{
+            "header":"아다델타",
+            "content":"아다델타는 아다그라드, 알엠에스프롬, 모멘텀을 모두 합친 경사하강법으로 아다그라드의 특징인 학습의 기울기 제곱의 합을 윈도우 사이즈를 두어 윈도우 사이즈만틈의 합으로 변경한 이후 알엠에스프롬과 동일하게 지수이동평균을 적응한다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.adadelta"
+          },
+          "params":[
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.001,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"rho",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.95,
+              "step": 0.01
+            },
+            {
+              "kind":"float",
+              "title":"epsilon",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.00001,
+              "step": 0.000001
+            }
+          ]
+        }, 
+        {
+          "title":"adam",
+          "description":{
+            "header":"아담",
+            "content":"아담은 모멘텀과 알엠에스프롬을 응용한 경사 하강법으로 모멘텀처럼 기울기를 제곱하지 않은 값의 지수평균과 알엠에스프롬처럼 기울기의 제곱을 지수평균한 값을 사용한다. 두 지수평균의 값이 0으로 초기화되기 때문에 지수이동평균을 구하면 0으로 편향된 값추정이 발생할 수 있다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.adam"
+          },
+          "params":[
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.001,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"beta1",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.9,
+              "step": 0.01
+            },
+            {
+              "kind":"float",
+              "title":"beta2",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.999,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"epsilon",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.00001,
+              "step": 0.000001
+            }
+          ]
+        }, 
+        {
+          "title":"adamax",
+          "description":{
+            "header":"아다맥스",
+            "content":"주로 아담이 좋지 않은 성능을 보일 때 아다맥스를 사용하며, 아담이 l2 노름으로 가중치를 업데이트한다면 아다맥스는 L-p 노름을 사용한다. p가 무한대로 갈 때 안정적인 알고리즘을 만들어 줄 수 있다.",
+            "link": "https://js.tensorflow.org/api/latest/?_gl=1*1jggm3s*_ga*NDI3MTE0NTc2LjE2NTgxNTY4MTE.*_ga_W0YLR4190T*MTY2ODU4MDk3MS4xLjEuMTY2ODU4MDk3MS4wLjAuMA..#train.adamax"
+          },
+          "params":[
+            {
+              "kind":"float",
+              "title":"learningRate",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.002,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"beta1",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.9,
+              "step": 0.01
+            },
+            {
+              "kind":"float",
+              "title":"beta2",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.999,
+              "step": 0.001
+            },
+            {
+              "kind":"float",
+              "title":"epsilon",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.00001,
+              "step": 0.000001
+            },
+            {
+              "kind":"float",
+              "title":"decay",
+              "type": "number",
+              "min":0,
+              "defaultValue":0.0,
+              "step": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id":2,
+      "title":"loss",
+      "info":[
+        {
+          "title":"meanSquaredError",
+          "description":{
+            "header":"평균제곱오차",
+            "content":"예측한 값과 실제 값의 평균 제곱 오차를 정의한다. 차가 커질수록 제곱 연산으로 인해서 값이 더욱 차이가 나며, 제곱으로 인해 오차가 양수던 음수던 누적 값을 증가시킨다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanSqureadError"
+          }
+        }, 
+        {
+          "title":"meanAbsoluteError",
+          "description":{
+            "header":"평균절대오차",
+            "content":"예측한 값과 실제 값의 평균 절대 오차를 정의한다. 차와 비례하여 일정하게 증가하는 특징이 있어 이상치에 덜 민감한 특징이 있다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanAbsoluteError"
+          }
+        }, 
+        {
+          "title":"meanAbsolutePercentageError",
+          "description":{
+            "header":"평균 절대 비율 오차",
+            "content":"예측한 값과 실제 값의 차이의 절대값을 예측값으로 나눈 합으로 이상치에 취약한 단점을 가지지만 최대 크기가 제한되는 특징이 있다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanAbsolutePercentageError"
+          }
+        }, 
+        {
+          "title":"squaredHinge",
+          "description":{
+            "header":"제곱 힌지",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanAbsolutePercentageError"
+          }
+        },
+        { 
+          "title":"hinge",
+          "description":{
+            "header":"힌지",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/Hinge"
+          }
+        },
+        { 
+          "title":"categoricalHinge",
+          "description":{
+            "header":"범주형 힌지",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalHinge"
+          }
+        },
+        {
+          "title":"logcosh",
+          "description":{
+            "header":"로그 코사인",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/LogCosh"
+          }
+        },
+        {
+          "title":"categoricalCrossentropy",
+          "description":{
+            "header":"범주형 교차 엔트로피",
+            "content":"라벨 클래스가 3개 이상일 경우 사용하며 보통 softmax 활성화 함수와 연계되어 사용되어 softmax loss로 불린다. 라벨이 one-hot-encoding된 형태로 제공될 때 사용 가능하다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/CategoricalCrossentropy"
+          }
+        },
+        {
+          "title":"poisson",
+          "description":{
+            "header":"포이즌",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/Poisson"
+          }
+        },
+        {
+          "title":"cosineProximity",
+          "description":{
+            "header":"코사인 프록시",
+            "content":"",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/losses/CosineProximity"
+          }
+        }
+      ]
+    }
+
+],
+  "Layers":[
+    {
+      "id":1,
+      "title": "Sequence",
+      "info": [
+        {
+          "name": "mainParams",
+          "params": [            
+            {
+            "kind":"array",
+            "title":"inputShape",
+            "type":"text",
+            "placeholder":"[...]",
+            "defaultValue": [1],
+            "required": true
+            }, 
+            {
+              "kind":"input",
+              "title":"units",
+              "type": "number",
+              "placeholder": "정수만 입력",
+              "min":1,
+              "step":1,
+              "defaultValue": 1,
+              "required": true
+            }, 
+            {
+              "kind":"select",
+              "title":"activation",
+              "list": [
+                "elu","hardSigmoid","linear","relu","relu6", "selu",
+                "sigmoid","softmax","softplus","softsign","tanh",
+                "swish","mish"
+              ],
+              "defaultValue": "linear"
+            }
+          ]
+        },
+        {
+          "name": "subParams",
+          "params": [            
+
+            {
+              "kind":"bool",
+              "title":"useBias",
+              "list": ["true", "false"]
+            },
+            {
+              "kind":"array",
+              "title":"batchInputShape",
+              "type":"text",
+              "placeholder":"[null, ...]"
+            },
+            { "kind":"select",
+              "title":"kerneldefaultializer",
+              "list": [
+                "constant","glorotNormal","glorotUniform","heNormal",
+                "heUniform","identity", "leCunNormal","leCunUniform",
+                "ones","orthogonal","randomNormal", "randomUniform",
+                "truncatedNormal","varianceScaling","zeros"
+              ]
+            },
+            {
+              "kind":"select",
+              "title":"biasdefaultializer",
+              "list": [
+                "constant","glorotNormal","glorotUniform","heNormal",
+                "heUniform","identity", "leCunNormal","leCunUniform",
+                "ones","orthogonal","randomNormal", "randomUniform",
+                "truncatedNormal","varianceScaling","zeros"
+              ]
+            },
+            {
+              "kind":"input",
+              "title":"inputDim",
+              "min":1
+            }
+          ]}
+      ]
+    },
+    {
+      "id":2,
+      "title": "Model",
+      "info": [
+        {
+          "name": "mainParams",
+          "params": [
+            {
+              "kind":"input",
+              "title":"shape",
+              "placeholder":"input shape (not including batch dimension)",
+              "type":"number",
+              "required":true
+            }
+          ]
+        }
+      ]
+    }  
+  ],
+  "Parameters":[
+    {
+      "kind":"input",
+      "mainTitle":"배치 크기",
+      "title":"batchSize",
+      "type":"number",
+      "placeholder":"number",
+      "min":1,
+      "defaultValue":32
+    },
+    {
+      "kind":"input",
+      "mainTitle":"에포크 수",
+      "title":"epochs",
+      "type":"number",
+      "placeholder":"number",
+      "min":1,
+      "defaultValue":50
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+:root {
+    --bg-opacity: 1;
+    --bg-color: rgb(248 250 252 / var(--bg-opacity));
+    --fs-bg-color: rgb(241 245 249 / var(--bg-opacity));
+    --shadow-color: #94a3b8;
+    --shadow-colored: 0 10px 15px -3px var(--shadow-color), -2px -1px 6px -4px var(--shadow-color);
+    --shadow: var(--shadow-colored);
+    --border-opacity: 1;
+    --border-color: rgb(202, 202, 209);
+    --background-hover-color: rgb(241 245 249 / var(--bg-opacity))
+}

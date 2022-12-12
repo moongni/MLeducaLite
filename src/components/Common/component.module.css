@@ -1,0 +1,47 @@
+@import "../../App.css";
+
+.container {
+    width: 100%;
+    min-height: 100%;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+}
+
+.title {
+    display: flex;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    align-items: center;
+}
+.title .i {
+    margin-right: 1rem;
+}
+
+.subContainer {
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+    border-width: 1px;
+    border-color: var(--border-color);
+}
+
+.centerContainer {
+    position: relative;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+    justify-content: center;
+}
+.flexContainer {
+    display: flex;
+    margin: 0 2.5rem ;
+}
+.btn {
+    width: 8rem;
+    margin: 0.5rem;
+    height: 2.5rem;
+}

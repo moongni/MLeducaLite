@@ -1,0 +1,50 @@
+@import "../../App.css";
+
+.docContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5%;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    margin: 10px 0;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.headline {
+    margin: 30px 20px;
+    border-top: 2px solid var(--border-color);
+}
+
+.img {
+    margin: 10px 0;
+    margin-bottom: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: inline-block;
+}
+.a:hover {
+    text-decoration: underline;
+}
+
+.table {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.25rem;
+}

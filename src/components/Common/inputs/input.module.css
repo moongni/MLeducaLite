@@ -1,0 +1,36 @@
+@import "../../../App.css";
+
+.input{
+    margin-right: 2.5rem;
+    background: none;
+    width: 50%;
+    border: none;
+    border-bottom: solid 2px rgb(203 213 225 / var(--bg-opacity));
+    color: #474544;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: 0 0 0.5em 0;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    word-break: keep-all;
+}
+.input:focus {
+    outline: none;
+    border-bottom: solid 2px rgb(148 163 184 / var(--bg-opacity));
+}
+
+.select {
+    margin-right: 2.5rem;
+    cursor: pointer;
+    background-image: url("/public/img/down-arrow.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    outline: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+select::-ms-expand {
+    display: none;
+}

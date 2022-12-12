@@ -1,0 +1,28 @@
+@import "../../../App.css";
+
+.navContainer {
+    position: relative;
+    text-align: left;
+}
+
+.navLinkContainer {
+    padding: 0.5rem;
+    width: 14rem;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.navSpan {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.navSpanDisabled{
+    color: var(--shadow-color);
+}
+:hover.navSpanDisabled {
+    color: #bfc8d6;
+}
+.navSpanActive {
+    border-bottom-width: 2px;
+    border-color: rgb(203 213 225 / var(--border-opacity));
+}

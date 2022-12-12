@@ -1,0 +1,47 @@
+{
+    "sidebarLinkName":
+    [
+        {
+            "name": "데이터 적재",
+            "subLinkName":[],
+            "icon":"FiDatabase",
+            "link":"/loadData"
+        },
+        {
+            "name": "데이터 전처리",
+            "subLinkName":[],
+            "icon":"MdOutlineToc",
+            "link":"/preprocessing"
+        },
+        {
+            "name": "신경망 구성",
+            "subLinkName":[],
+            "icon":"AiOutlineControl",
+            "link":"/setting"
+        },
+        {
+            "name": "학습",
+            "subLinkName": [],
+            "icon":"GoTriangleRight",
+            "link":"/fit/"
+        },
+        {
+            "name": "예측",
+            "subLinkName": [],
+            "icon":"AiOutlineLineChart",
+            "link":"/predict"
+        },
+        {
+            "name": "분석",
+            "subLinkName": [],
+            "icon":"IoMdAnalytics",
+            "link":"/analytic/"
+        },
+        {
+            "name":"Download",
+            "subLinkName": [],
+            "icon":"FaFileExport",
+            "link":"/download"
+        }
+    ]
+}

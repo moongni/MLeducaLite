@@ -1,0 +1,26 @@
+@import "../../../App.css";
+
+.container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    padding: 10px;
+    padding-bottom: 20px;
+    width: 70%;
+    border-radius: 5px;
+    justify-content: center;
+    background-color: var(--bg-color);
+}
+.button {
+    color: var(--shadow-color);
+    opacity: 0.5;
+    margin: auto;
+}
+.button:disabled {
+    color: black;
+    opacity: 1;
+}
+:hover.button:enabled {
+    color: #bfc8d6;
+}

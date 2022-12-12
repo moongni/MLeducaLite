@@ -1,0 +1,44 @@
+.container {
+    margin: 2.5rem;
+}
+.container .form {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.container .form .label {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-radius: 1rem;
+    border-style: dashed;
+    border-color: #cbd5e1;
+}
+
+.button {
+    padding: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-style: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+:hover.button {
+    text-decoration-line: underline;
+}
+
+.dragActive {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+}

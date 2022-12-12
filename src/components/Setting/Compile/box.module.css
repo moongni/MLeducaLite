@@ -1,0 +1,70 @@
+@import "../../../App.css";
+
+.container {
+    margin: 30px 10px;
+}
+.subContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.header {
+    font-size: 1.25rem;
+    line-height: 1.75rem
+}
+.header:hover {
+    opacity: 0.5;
+}
+.i {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    width: 5rem;
+    padding: 0 1rem;
+    cursor: pointer
+}
+.iTooltip {
+    background-color: var(--bg-color);
+    border-color: var(--shadow-color);
+    border-width: 1px;
+    border-radius: 5px;
+    color: #000;
+    height: auto;
+    position: absolute;
+    left: 5rem;
+    top: -50%;
+    display: inline-block;
+    padding: 5px 11px;
+    width: 30rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    z-index: 100; 
+    letter-spacing: -0.25px;
+    transition: all .3s ease-in-out;
+}
+.iTooltip .h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    width: max-content;
+    word-break: keep-all;
+}
+.iTooltip .span {
+    font-size: 1rem;
+    font-weight: 300;
+    display: inline-block;
+}
+.iTooltip .a {
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-block;
+}
+.iTooltip .a:hover {
+    text-decoration: underline;
+}
+.isSubOpen {
+    display: none;
+    opacity: 0;
+    cursor: default;
+}

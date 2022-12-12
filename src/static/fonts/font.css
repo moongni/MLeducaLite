@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "NatoSansKR";
+    font-display: fallback;
+    src: url("./NatoSansKR-Regular.ttf") format("truetype"), url("./NatoSansKR-Regular.woff")
+    format("woff"), url("./NatoSansKR-Regular.eot?iefix") format("embedded-opentype");
+    font-weight: 400;
+    font-style: normal;
+}

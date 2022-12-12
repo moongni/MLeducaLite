@@ -1,0 +1,14 @@
+.titleContainer {
+    display:flex;
+    justify-content:space-between;
+    margin-right:2.5rem;
+}
+
+.btnContainer {
+    display: flex;
+}
+
+.subTitle {
+    font-size:1.25rem;
+    margin: 0.5rem 0;
+}

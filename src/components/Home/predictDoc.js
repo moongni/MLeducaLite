@@ -13,13 +13,15 @@ const PredictDoc = () => {
         "Label Encoding (라벨 인코딩)",
         "Drop Null Value (Null값 없애기)"
     ]
+    var public_url = process.env.PUBLIC_URL[process.env.PUBLIC_URL.length - 1] === "/" ?
+        process.env.PUBLIC_URL.slice(0, -1): process.env.PUBLIC_URL
 
     return (
         <div className={pageStyle.docContainer}>
             <Title title="예 측"/>
             <div className={pageStyle.contentContainer}>
                 예측에서는 테스트 셋을 훈련이 완료된 모델을 통해 예측을 진행한다.
-                <img className={pageStyle.img} src="/img/pages/predict/predict.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/predict/predict.png`} alt="" />
                 예측 데이터 준비에서는 예측에 사용될 데이터 셋을 준비하는 과정이다.
                 테스트 셋을 입력하는 것은 사용자 입력과 url 또는 파일로 입력을 지원한다.
                 <br/>
@@ -44,16 +46,16 @@ const PredictDoc = () => {
             <div className={pageStyle.headline}/>
             <Title title="예 제"/>
             <div className={pageStyle.contentContainer}>
-                <img className={pageStyle.img} src="/img/pages/predict/testsetExample.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/predict/testsetExample.png`} alt="" />
                 데이터 전처리에서 나눠진 30개의 테스트 셋을 사용하거나 또는 사용자 입력, 파일 입력을 이용해 테스트 셋을 준비한다.
                 <br/>
                 각 열별로 전처리 옵션을 추가해줄 수 있지만 예제에서는 데이터 전처리과정에서 전처리가 끝났기 때문에 사용하지 않는다.
                 <br/>
                 <br/>
-                <img className={pageStyle.img} src="/img/pages/predict/modelLoadExample.png" alt="" />
-                <img className={pageStyle.img} src="/img/pages/predict/preparemodelExample.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/predict/modelLoadExample.png`} alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/predict/preparemodelExample.png`} alt="" />
                 모델 불러오기를 통해 예측을 진행할 모델을 불러온다.
-                <img className={pageStyle.img} src="/img/pages/predict/predDataExample.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/predict/predDataExample.png`} alt="" />
                 예측을 진행한 후 예측 결과를 볼 수 있으며, 다운로드가 가능하다.
             </div>
         </div>

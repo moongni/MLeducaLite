@@ -29,7 +29,7 @@ const splitTrainTest = async (labelData, featureData, trainRatio) => {
 
     const numSample = Object.values(labelData)[0].length;
 
-    if ( numSample != Object.values(featureData)[0].length ) {
+    if ( numSample !== Object.values(featureData)[0].length ) {
         return {
             isError: true,
             errorData: {
@@ -142,7 +142,7 @@ const Preprocessing = () => {
             const { labelData, featureData } = await preprocess(selectColumn(data, trainY.columns), selectColumn(data, trainX.columns), process);
 
             // 훈련 셋 비율에 따라 데이터 저장
-            if ( splitRatio == 1.0 || splitRatio == null) {
+            if ( splitRatio === 1.0 || splitRatio === null) {
                 dispatch(trainActions.setData({
                     title: "feature",
                     data: featureData

@@ -12,7 +12,6 @@ import { Loader } from "../Common/loader/Loader";
 import { testActions } from "../../reducers/testSlice";
 import { GrAdd } from "react-icons/gr";
 import * as dfd from "danfojs";
-import mainStyle from "../Common/component.module.css";
 import tableStyle from "../Common/table/table.module.css";
 
 export const PredictData = ({children, style, className, ...props}) => {
@@ -32,7 +31,7 @@ export const PredictData = ({children, style, className, ...props}) => {
     ]
 
     const tapContent = (currentTab) => {
-        const curContent = tabData.filter(tab => `${tab.id}` == currentTab);
+        const curContent = tabData.filter(tab => `${tab.id}` === currentTab);
         switch (curContent[0].id) {
             case "1":
                 return <CustomInput

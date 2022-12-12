@@ -19,7 +19,7 @@ export function errorHandler(err) {
             alert("초기화 후 다시 시도해주세요.");
             return;
         }
-        if ( err.message == "Failed to fetch") {
+        if ( err.message === "Failed to fetch") {
             alert("정보를 받아오는데 실패했습니다.")
             return;
         }

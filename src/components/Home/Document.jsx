@@ -70,10 +70,16 @@ const Card = ({ itemId, ...props }) => {
         "height":"50px",
     }
 
+    var imgUrl = process.env.PUBLIC_URL + props.imgUrl;
+    
+    if (process.env.PUBLIC_URL[process.env.PUBLIC_URL.length - 1] === "/") {
+        imgUrl = process.env.PUBLIC_URL.slice(0, -1) + props.imgUrl        
+    }
+
     return (
         <div className={style.cardContainer}>
             <div className={style.imgContainer}>
-                <img className={style.img} src={props.imgUrl} alt=""/>
+                <img className={style.img} src={imgUrl} alt=""/>
             </div>
             <div className={style.contentContainer}>
                 <Title title={props.title} style={{"padding":"10px 15px"}}/>
@@ -91,4 +97,3 @@ const Card = ({ itemId, ...props }) => {
 }
 
 export default Docs
-

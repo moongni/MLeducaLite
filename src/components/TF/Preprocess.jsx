@@ -27,7 +27,7 @@ export async function preprocess(labelData, featureData, process) {
   // const nullToNaN = (data, columns) => {
   //   for (const column of columns) {
   //     data[column] = data[column].map(value => {
-  //       return (value == null ? NaN : value)
+  //       return (value === null ? NaN : value)
   //     })
   //   }
   // }
@@ -65,7 +65,7 @@ export async function preprocess(labelData, featureData, process) {
   
   function fillMostFrequnce(dataFrame, column) {
     const dataType = data[column].reduce(( dtype, val ) => {
-      return dtype == typeof val || isEmpty(val) ? dtype : "object";
+      return dtype === typeof val || isEmpty(val) ? dtype : "object";
     }, typeof data[column][0]);
     
     var convertType = {
@@ -122,7 +122,7 @@ export async function preprocess(labelData, featureData, process) {
     const nall_face = dfd.toJSON(dataFrame[column].isNa())[0];
 
     const nall_idx = nall_face.reduce(( acc, val, idx ) => {
-      if ( val == true ) {
+      if ( val === true ) {
         acc.push(idx);
       }
 
@@ -147,7 +147,7 @@ export async function preprocess(labelData, featureData, process) {
     var dataFrame = label_df;
     var anotherFrame = feature_df;
     
-    if ( title == "feature" ) {
+    if ( title === "feature" ) {
       data = featureData;
       dataFrame = feature_df;
       anotherFrame = label_df;
@@ -158,21 +158,21 @@ export async function preprocess(labelData, featureData, process) {
       if (value.length != 0) {
   
         for (const preprocess of value) {
-          if (preprocess == preprocessOption.STARDARDSCALE)
+          if (preprocess === preprocessOption.STARDARDSCALE)
             stardardScale(dataFrame, key);
-          if (preprocess == preprocessOption.NORMALIZE)
+          if (preprocess === preprocessOption.NORMALIZE)
             minMaxNormalize(dataFrame, key);
-          if (preprocess == preprocessOption.FILLMEAN)
+          if (preprocess === preprocessOption.FILLMEAN)
             fillMean(dataFrame, key);
-          if (preprocess == preprocessOption.FILLMEDIAN)
+          if (preprocess === preprocessOption.FILLMEDIAN)
             fillMedian(dataFrame, key);
-          if (preprocess == preprocessOption.FILLEMOSTFREQUNCE)
+          if (preprocess === preprocessOption.FILLEMOSTFREQUNCE)
             fillMostFrequnce(dataFrame, key);
-          if (preprocess == preprocessOption.ONEHOTENCODING)
+          if (preprocess === preprocessOption.ONEHOTENCODING)
             dataFrame = oneHotEncoding(dataFrame, key);
-          if (preprocess == preprocessOption.LABELENCODING)
+          if (preprocess === preprocessOption.LABELENCODING)
             labelEncoding(dataFrame, key);
-          if (preprocess == preprocessOption.DROPNA)
+          if (preprocess === preprocessOption.DROPNA)
             dropNa(dataFrame, key);
         }
 
@@ -180,7 +180,7 @@ export async function preprocess(labelData, featureData, process) {
   
     }
 
-    if ( title == "feature") {
+    if ( title === "feature") {
       feature_df = dataFrame;
       label_df = anotherFrame;
     } else {

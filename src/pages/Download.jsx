@@ -23,9 +23,11 @@ const Download = () => {
 
         try {
             const saveResults = await model.save(`downloads://${fileName}`);
+            
+            console.log(saveResults);
 
         } catch (err) {
-            if (err.name == "TypeError") {
+            if (err.name === "TypeError") {
                 errorHandler({
                     message: "모델이 정의되지 않았습니다.",
                     statuscode: 2
@@ -49,7 +51,7 @@ const Download = () => {
             alert(`localstorage://model/${fileName} 저장완료`);
         })
         .catch( err => {
-            if (err.name == "TypeError") {
+            if (err.name === "TypeError") {
                 errorHandler({
                     message: "모델이 정의되지 않았습니다.",
                     statuscode: 2

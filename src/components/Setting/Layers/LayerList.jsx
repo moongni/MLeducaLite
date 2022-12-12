@@ -20,7 +20,7 @@ export const LayerList = ({style, data, isModel, handleRemove, ...props}) => {
     
     const maxLengthIndex = lengthArray.indexOf(Math.max(...lengthArray));
     
-    const columns = data[maxLengthIndex].idx == "input"? 
+    const columns = data[maxLengthIndex].idx === "input"? 
         [] : [...Object.keys(data[maxLengthIndex].info)];
 
     

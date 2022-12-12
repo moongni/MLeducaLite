@@ -24,12 +24,13 @@ function Layers() {
 
     // 탭 매뉴에 따라 렌더링
     function tapContent(currentTab) {
-        const curContent = data.Layers.filter(tab => `${tab.id}` == currentTab)
+        const curContent = data.Layers.filter(tab => `${tab.id}` === currentTab)
         switch (curContent[0].title) {
             case "Sequence":
                 return <Sequence info={curContent[0].info} disabled={disabled} setDisabled={setDisabled}/>                
             case "Model":
                 return <Model info={curContent[0].info} disabled={disabled} setDisabled={setDisabled}/>
+            default: return;
         }
     }
 

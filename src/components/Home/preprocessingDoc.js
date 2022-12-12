@@ -13,12 +13,15 @@ const PreprocessingDoc = () => {
         "Label Encoding (라벨 인코딩)",
         "Drop Null Value (Null값 없애기)"
     ]
-      
+
+    var public_url = process.env.PUBLIC_URL[process.env.PUBLIC_URL.length - 1] === "/" ?
+    process.env.PUBLIC_URL.slice(0, -1): process.env.PUBLIC_URL
+ 
     return (
         <div className={pageStyle.docContainer}>
             <Title title="데이터 전처리"/>
             <div className={pageStyle.contentContainer}>
-                <img className={pageStyle.img} src="/img/pages/preprocessing/preprocessingSetting.png" alt=""/> 
+                <img className={pageStyle.img} src={`${public_url}/img/pages/preprocessing/preprocessingSetting.png`} alt=""/> 
                 데이터 전처리에서는 불러온 데이터에서 모델의 훈련에 사용될 라벨과 특성으로 또는 훈련 셋과 테스트 셋으로 나눌 수 있습니다.
                 <br/>
                 불러온 데이터의 열 이름 중 라벨과 특성으로 사용할 열 이름을 각각 선택한 후 적용 버튼을 누르면 각 열에 대한 전처리 옵션을 설정할 수 있습니다.
@@ -34,12 +37,12 @@ const PreprocessingDoc = () => {
             <div className={pageStyle.headline}/>
             <div className={pageStyle.contentContainer}>
                 나눠진 데이터 셋은 훈련 셋과 테스트 셋 각각의 데이터 뷰에 나타나며 데이터 뷰의 표시할 개수를 입력받아 수동적으로 렌더링이 가능합니다.
-                <img className={pageStyle.img} src="/img/pages/preprocessing/preprocessingDataview.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/preprocessing/preprocessingDataview.png`} alt="" />
             </div>
             <div className={pageStyle.headline}/>
             <Title title="예 시"/>
             <div className={pageStyle.contentContainer}>
-                <img className={pageStyle.img} src="/img/pages/preprocessing/settingExample.png" alt="" />
+                <img className={pageStyle.img} src={`${public_url}/img/pages/preprocessing/settingExample.png`} alt="" />
                 불러온 iris 데이터에서 species를 라벨로 설정하고 나머지 sepal_length, sepal_width, petal_length, petal_width를 특성으로 설정한다. 
                 <br/>
                 라벨에 대한 전처리 옵션은 species에 Drop Null Value, One Hot Encoding을 설정합니다.

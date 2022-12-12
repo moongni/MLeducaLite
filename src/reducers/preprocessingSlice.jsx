@@ -35,7 +35,7 @@ const preprocessingSlice = createSlice({
         initOne(state, action) {
             const { title, initName } = action.payload;
             
-            if ( initName == "label" || initName == "feature") {
+            if ( initName === "label" || initName === "feature") {
                 state[title] = {
                     ...state[title],
                     [initName]: {}

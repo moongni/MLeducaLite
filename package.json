@@ -27,7 +27,6 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-persist-indexeddb-storage": "^1.0.4",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

@@ -6,9 +6,10 @@ import Title from "../Common/title/title";
 import { LayerList } from "../Setting/Layers/LayerList";
 import { contentView } from "../Common/module/package";
 import boardStyle from "./ModelDashBoard.module.css";
-import mainStyle from "../Common/component.module.css";
+import mainStyle from "../../static/css/component.module.css";
 
-export const SideCompileBoard = ({children, className, style, ...props}) => {
+export const SideCompileBoard = ({ children, className, style, ...props }) => {
+    // 컴파일 설정 redux 정보
     const compile = useSelector( state => state.setting.compile );
 
     return (
@@ -31,19 +32,21 @@ export const SideCompileBoard = ({children, className, style, ...props}) => {
                             </li>  
                         )
                     }
-                    if (setting[0] === "loss" && !isEmptyStr(setting[1])){
+                    if ((setting[0] === "loss" || setting[0] === "matrics") && !isEmptyStr(setting[1])){
                         return (
                             <li style={{"paddingLeft":"0.5rem"}}>
                                 <p style={{"wordBreak":"break-all"}}>{setting[0]}:&nbsp; &nbsp;{setting[1]}</p>
                             </li>
                         )
-            }})}
+                    }
+            })}
            </Link>
         </ul>
     )
 }
 
 const OptimizerBoard = ({ style }) => {
+    // 최적화 함수 redux 정보
     const optimizer = useSelector( state => state.setting.compile.optimizer );
     
     return (
@@ -71,6 +74,7 @@ const OptimizerBoard = ({ style }) => {
 }
 
 const LossBoard = ({ style }) => {
+    // 손실 함수 redux 정보
     const loss = useSelector( state => state.setting.compile.loss );
 
     return (
@@ -90,6 +94,7 @@ const LossBoard = ({ style }) => {
 }
 
 export const SideLayerBoard = ({children, className, style, ...props}) => {
+    // 레이어 구성 redux 정보
     const layers = useSelector( state => state.setting.layer.info );
 
     return (
@@ -115,6 +120,7 @@ export const SideLayerBoard = ({children, className, style, ...props}) => {
 }
 
 export const LayerBoard = () => {
+    // 레이어 구성 redux 정보
     const layers = useSelector( state => state.setting.layer );
 
     const style = {
@@ -154,6 +160,7 @@ export const LayerBoard = () => {
 
 
 export const SideParamBoard = ({children, className, style, ...props}) => {
+    // 파라미터 redux 정보
     const parameter = useSelector( state => state.setting.parameter.info );
     
     return (
@@ -172,6 +179,7 @@ export const SideParamBoard = ({children, className, style, ...props}) => {
 }
 
 const ParamBoard = ({ style }) => {
+    // 파라미터 redux 정보
     const parameter = useSelector( state => state.setting.parameter.info );
 
     return (

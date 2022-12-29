@@ -20,7 +20,7 @@
             "link":"/setting"
         },
         {
-            "name": "학습",
+            "name": "훈련",
             "subLinkName": [],
             "icon":"GoTriangleRight",
             "link":"/fit/"

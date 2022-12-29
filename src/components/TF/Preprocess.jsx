@@ -16,23 +16,21 @@ const preprocessOption = {
 export async function preprocess(labelData, featureData, process) {
   /*
     parameter
-      labelData: selectColumns(dataSlice.info, label)
-      featureData: selectColumns(dataSlice.info, feature)
-      process: preprocessingSlice.info
+      labelData: Object [column: Array]
+      featureData: Object [column: Array]
+      process: Object
 
     return
-      process 내부에 있는 컬럼으로만 이루어진 data(dataSlice.info와 구조 동일) 반환
+      Object
+      
+      입력받은 labelData, featureData와 동일한 형식을 합친 Object로 반환
+      { 
+        "labelData": label_data,
+        "featureData": feature_data 
+      }
   */
 
-  // const nullToNaN = (data, columns) => {
-  //   for (const column of columns) {
-  //     data[column] = data[column].map(value => {
-  //       return (value === null ? NaN : value)
-  //     })
-  //   }
-  // }
-
-
+  // 표준화
   function stardardScale(dataFrame, column) {    
     const scaler = new dfd.StandardScaler();
 
@@ -40,6 +38,7 @@ export async function preprocess(labelData, featureData, process) {
     dataFrame[column] = scaler.transform(dataFrame[column]).values;
   }
 
+  // 정규화
   function minMaxNormalize(dataFrame, column) {
     function normalizeAlgorithm(x) {
       return (x - min) / (max - min)
@@ -51,21 +50,25 @@ export async function preprocess(labelData, featureData, process) {
     dataFrame[column] = dataFrame[column].map(normalizeAlgorithm).values;
   }
 
+  // 평균 채우기
   function fillMean(dataFrame, column) {
     const mean = dataFrame[column].mean();
 
     dataFrame[column] = dataFrame[column].fillNa(mean).values;
   }
 
+  // 중앙값 채우기
   function fillMedian(dataFrame, column) {
     const median = dataFrame[column].median();
 
     dataFrame[column] = dataFrame[column].fillNa(median).values;
   }
   
+  // 최빈값 채우기
   function fillMostFrequnce(dataFrame, column) {
+    // 데이터 타입 확인
     const dataType = data[column].reduce(( dtype, val ) => {
-      return dtype === typeof val || isEmpty(val) ? dtype : "object";
+      return dtype == typeof val || isEmpty(val) ? dtype : "object";
     }, typeof data[column][0]);
     
     var convertType = {
@@ -83,26 +86,38 @@ export async function preprocess(labelData, featureData, process) {
       }
     }
 
+    // 최빈값 찾기
     const hashmap = hashMap(data[column]);
     
     const mostFreVal = Object.keys(hashmap).reduce(( a, b ) => 
       hashmap[a] > hashmap[b] && !isEmpty(a) ? a : b )
 
-    console.log(dataFrame);
-    console.log(convertType[dataType](mostFreVal));
-
+    // 최빈값 채우기
     dataFrame[column] = dataFrame[column].fillNa(convertType[dataType](mostFreVal)).values;
   }
 
+  // onehotencoding
+  // [1,2,3] -> [[1,0,0], [0,2,0], [0,0,1]]
   function oneHotEncoding(dataFrame, column) {
     const encode = new dfd.OneHotEncoder();
-
+    
     encode.fit(dataFrame[column]);
 
     const sf_enc = encode.transform(dataFrame[column].values);
-
+    
     const encodedDataFrame = new dfd.DataFrame(sf_enc);
 
+    // rename 0, 1, 2 -> column-0, column-1, column-2
+    const onehotIndex = encodedDataFrame.columns;
+    const newColName = {}
+
+    for (var i of onehotIndex) {
+      newColName[`${i}`] = `${column}-${i}`
+    }
+
+    encodedDataFrame.rename(newColName, { inplace: true });
+
+    // 나머지 컬럼과 onehotencoding 결과 합치기
     dataFrame.drop({ columns: [column], inplace: true });
 
     const newDataFrame = dfd.concat({ dfList: [dataFrame, encodedDataFrame], axis: 1 });
@@ -110,6 +125,7 @@ export async function preprocess(labelData, featureData, process) {
     return newDataFrame
   }
 
+  // 라벨인코딩
   function labelEncoding(dataFrame, column) {
     const encode = new dfd.LabelEncoder();
 
@@ -118,11 +134,12 @@ export async function preprocess(labelData, featureData, process) {
     dataFrame[column] = encode.transform(dataFrame[column].values);
   }
 
+  // 널값 drop
   function dropNa(dataFrame, column) {
     const nall_face = dfd.toJSON(dataFrame[column].isNa())[0];
 
     const nall_idx = nall_face.reduce(( acc, val, idx ) => {
-      if ( val === true ) {
+      if ( val == true ) {
         acc.push(idx);
       }
 
@@ -137,8 +154,6 @@ export async function preprocess(labelData, featureData, process) {
     anotherFrame.resetIndex({ inplace:true });
   }
 
-  // var selectedData = selectColumn(data, Object.keys(process));
-  // var dataFrame = new dfd.DataFrame(data);
   var label_df = new dfd.DataFrame(labelData);
   var feature_df = new dfd.DataFrame(featureData);
   
@@ -147,32 +162,33 @@ export async function preprocess(labelData, featureData, process) {
     var dataFrame = label_df;
     var anotherFrame = feature_df;
     
-    if ( title === "feature" ) {
+    if ( title == "feature" ) {
       data = featureData;
       dataFrame = feature_df;
       anotherFrame = label_df;
     }
 
+    // 전처리 진행
     for (const [key, value] of Object.entries(process[title])) {
 
       if (value.length != 0) {
   
-        for (const preprocess of value) {
-          if (preprocess === preprocessOption.STARDARDSCALE)
+        for (const preOption of value) {
+          if (preOption == preprocessOption.STARDARDSCALE)
             stardardScale(dataFrame, key);
-          if (preprocess === preprocessOption.NORMALIZE)
+          if (preOption == preprocessOption.NORMALIZE)
             minMaxNormalize(dataFrame, key);
-          if (preprocess === preprocessOption.FILLMEAN)
+          if (preOption == preprocessOption.FILLMEAN)
             fillMean(dataFrame, key);
-          if (preprocess === preprocessOption.FILLMEDIAN)
+          if (preOption == preprocessOption.FILLMEDIAN)
             fillMedian(dataFrame, key);
-          if (preprocess === preprocessOption.FILLEMOSTFREQUNCE)
+          if (preOption == preprocessOption.FILLEMOSTFREQUNCE)
             fillMostFrequnce(dataFrame, key);
-          if (preprocess === preprocessOption.ONEHOTENCODING)
+          if (preOption == preprocessOption.ONEHOTENCODING)
             dataFrame = oneHotEncoding(dataFrame, key);
-          if (preprocess === preprocessOption.LABELENCODING)
+          if (preOption == preprocessOption.LABELENCODING)
             labelEncoding(dataFrame, key);
-          if (preprocess === preprocessOption.DROPNA)
+          if (preOption == preprocessOption.DROPNA)
             dropNa(dataFrame, key);
         }
 
@@ -180,7 +196,8 @@ export async function preprocess(labelData, featureData, process) {
   
     }
 
-    if ( title === "feature") {
+    // 결과 선언
+    if ( title == "feature") {
       feature_df = dataFrame;
       label_df = anotherFrame;
     } else {

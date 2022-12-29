@@ -342,9 +342,77 @@
           }
         }
       ]
+    },
+    {
+      "title": "metrics",
+      "info": [
+        {
+          "title": "accuracy",
+          "description": {
+            "header": "정확도",
+            "content": "예측값이 라벨값과 일치하는지 계산한다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Accuracy"
+          }
+        },
+        {
+          "title": "categoricalAccuracy",
+          "description": {
+            "header": "범주형 정확도",
+            "content": "가능성이 가장 높은 예측값과 라벨을 비교한다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/CategoricalAccuracy"
+          }
+        },
+        {
+          "title": "categoricalCrossentropy",
+          "description": {
+            "header": "범주형 교차 엔트로피",
+            "content": "다중 클래스 분류에서 자주 사용된다. One Hot Encoding 되어 주어진 라벨을 추정하여 사용할 수 있다. 예시 라벨값 [ 2, 0, 1 ] => y_true = [[ 0, 0, 1 ], [ 1, 0, 0 ], [ 0, 1, 0 ]]",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/CategoricalCrossentropy"
+          }
+        },
+        {
+          "title": "cosine",
+          "description": {
+            "header": "코사인 유사도",
+            "content": "라벨과 예측값 사이에서 코사인 유사도를 구한다. 코사인 유사도 = (a . b) / ||a|| ||b||",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/CosineSimilarity"
+          }
+        },
+        {
+          "title": "precision",
+          "description": {
+            "header": "정밀도",
+            "content": "양성 예측의 정확도를 가리킨다. 정확도는 TP(양성 샘플 양성 예측) / TP + FP(음성 샘플 양성 예측) 이다.",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/Precision"
+          }
+        },
+        {
+          "title": "MSE",
+          "description": {
+            "header": "평균 제곱 오차",
+            "content": "",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/MeanSquaredError"
+          }
+        },
+        {
+          "title": "MAE",
+          "description": {
+            "header": "평균 절대값 오차",
+            "content": "",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/MeanAbsoluteError"
+          }
+        },
+        {
+          "title": "MAPE",
+          "description": {
+            "header": "평균 절대값 비율 오차",
+            "content": "",
+            "link": "https://www.tensorflow.org/api_docs/python/tf/keras/metrics/MeanAbsolutePercentageError"
+          }
+        }
+      ]
     }
-
-],
+  ],
   "Layers":[
     {
       "id":1,

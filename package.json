@@ -1,5 +1,5 @@
 {
-  "name": "ui-test",
+  "name": "ml_educa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,7 +11,6 @@
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^4.0.1",
     "danfojs": "^1.1.1",
-    "gh-pages": "^4.0.0",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.1.0",
@@ -35,9 +34,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

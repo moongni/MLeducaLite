@@ -1,9 +1,10 @@
 import React, { useState , useCallback } from "react";
 import { isEmpty, isEmptyArray } from "../module/checkEmpty";
-import "./scrollStyle.css";
+import "../../../static/css/scrollStyle.css";
 import tableStyle from "./table.module.css";
 
 const ArrayTable = ({children, style, data, ...props}) => {
+    // 커서가 컴포넌트 안에 있는지 확인
     const [ hovering, setHovering ] = useState(false);
 
     const handleMouseOver = useCallback(() => {

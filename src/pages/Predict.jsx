@@ -17,7 +17,7 @@ import { Loader } from "../components/Common/loader/Loader";
 import { PreprocessingOptions } from "../components/Preprocessing/PreprocessingOption";
 import { preprocessingActions } from "../reducers/preprocessingSlice";
 import { testActions } from "../reducers/testSlice";
-import mainStyle from "../components/Common/component.module.css";
+import mainStyle from "../static/css/component.module.css";
 import * as dfd from "danfojs";
 import { errorHandler } from "../components/Common/module/errorHandler";
 
@@ -25,16 +25,20 @@ import { errorHandler } from "../components/Common/module/errorHandler";
 const Predict = () => {
     const dispatch = useDispatch();
 
+    // redux
     const rowData = useSelector( state => state.test.rowData );
     const testX = useSelector( state => state.test.feature );
     const predY = useSelector( state => state.test.predData );
     const process = useSelector( state => state.preprocess.test );
     const yColumn = useSelector( state => state.train.label.columns );
 
+    // 모델 정보
     const [ model, setModel ] = useOutletContext();
     
     const [ disable, setDisable ] = useState(true);
     const [ isLoading, setLoading ] = useState(false);
+
+    // 데이터 뷰 정보
     const [ nData, setNData ] = useState({"testNData":5, "predNData":5});
 
     const initData = {
@@ -45,6 +49,7 @@ const Predict = () => {
     const [ viewTestX, setViewTestX ] = useState(initData);
     const [ viewPredY, setViewPredY ] = useState(initData)
 
+    // 예측 버튼 활성화
     useEffect(() => {
         // 버튼 활성화 조건
         if ( !isEmptyObject(model) && !isEmptyObject(testX.data) ) {
@@ -53,13 +58,14 @@ const Predict = () => {
             setDisable(true);
         }
 
-        // 데이터 뷰 초기화
+        // 테스트 셋 데이터 뷰 초기화
         updateViewData(testX, setViewTestX, nData.testNData);
 
     }, [ model, testX.data ])
     
+    // 예측 데이터 뷰 초기화
     useEffect(() => {
-        // 데이터 뷰 초기화
+        // 예측 데이터 뷰 초기화
         updateViewData(predY, setViewPredY, nData.predNData);
     }, [ predY ])
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Modal from "./modal";
 import { Button } from "../button/Button";
 import Inputs from "../inputs/Inputs";
-import mainStyle from "../component.module.css";
+import mainStyle from "../../../static/css/component.module.css";
 import Title from "../title/title";
 import { toArray, toOption } from "../module/option";
 import { hashMap } from "../module/package";
@@ -36,7 +36,10 @@ const style = {
 }
 
 export const SaveModal = ({ modalShow, setModalShow, data, ...props }) => {
+    // 저장할 파일 이름
     const [ fileName, setFileName ] = useState('');
+
+    // 커서가 컴포넌트안에 있는지 확인
     const [ hovering, setHovering ] = useState(false);
     
     const handleMouseOver = useCallback(() => {
@@ -48,7 +51,6 @@ export const SaveModal = ({ modalShow, setModalShow, data, ...props }) => {
         !!hovering &&
         setHovering(false);
     }, [hovering]);
-
 
     return (
         <Modal
@@ -96,7 +98,10 @@ export const SaveModal = ({ modalShow, setModalShow, data, ...props }) => {
 }
 
 export const LocalSave = ({ modalShow, setModalShow, data, ...props }) => {
+    // 저장할 파일 이름
     const [ fileName, setFileName ] = useState('');
+    
+    // 커서가 컴포넌트안에 있는지 확인
     const [ hovering, setHovering ] = useState(false);
     
     const handleMouseOver = useCallback(() => {
@@ -156,6 +161,7 @@ export const LocalSave = ({ modalShow, setModalShow, data, ...props }) => {
 }
 
 export const ChartModal = ({ modalShow, setModalShow, columns, rowData, viewOptions, setViewOptions, ...props }) => {
+    // 커서가 컴포넌트안에 있는지 확인
     const [ hovering, setHovering ] = useState(false);
     
     const handleMouseOver = useCallback(() => {
@@ -170,10 +176,8 @@ export const ChartModal = ({ modalShow, setModalShow, columns, rowData, viewOpti
 
     const [ column, setColumn ] = useState("");
     const [ columnValue, setColumnValue ] = useState([]);
-    
     const [ splitOptions, setSplitOptions ] = useState([]);
     const [ splitValue, setSplitValue ] = useState([]);
-
     const [ tempOptions, setTempOptions ] = useState(viewOptions);
 
     // 열 이름 목록 업데이트

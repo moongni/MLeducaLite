@@ -44,12 +44,12 @@ const trainSlice = createSlice({
             const dtype = getDtype(data);
             const shape = getShape(data);
 
-            if (title === "label") {
+            if (title == "label") {
                 state.label.data = data;
                 state.label.columns = Object.keys(data);
                 state.label.dtype = dtype;
                 state.label.shape = shape;
-            } else if (title === "feature") {
+            } else if (title == "feature") {
                 state.feature.data = data;
                 state.feature.columns = Object.keys(data);
                 state.feature.dtype = dtype;

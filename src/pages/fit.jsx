@@ -16,8 +16,9 @@ import { Button } from "../components/Common/button/Button";
 import { Loader } from "../components/Common/loader/Loader";
 import { ModelSelectModal, SettingSelectModal } from "../components/Common/modal/modal";
 import { historyActions } from "../reducers/historySlice";
-import mainStyle from "../components/Common/component.module.css";
+import mainStyle from "../static/css/component.module.css";
 
+// 훈련 진행 함수
 async function run(model, compile, parameter, xs, ys) {
   const { features, labels } = convertToTensor(xs,  ys);
   console.log('convertToTensor 완료');
@@ -36,12 +37,14 @@ const Fit = () => {
   
   const [ model, setModel ] = useOutletContext();
 
+  // redux 정보
   const compile = useSelector( state => state.setting.compile );
   const parameter = useSelector( state => state.setting.parameter.info );
   const layers = useSelector( state => state.setting.layer );
   const xs = useSelector( state => state.train.feature );
   const ys = useSelector( state => state.train.label );
 
+  // 데이터 뷰 정보
   const initData = {
     'columns': [],
     'data': {},
@@ -55,12 +58,15 @@ const Fit = () => {
   const [ modelModal, setModelModal ] = useState(false);
   const [ settingModal, setSettingModal ] = useState(false);
   const [ isLoading, setLoading ] = useState(false);
+
+  // 학습 버튼 초기화
   const [ disabled, setDisabled] = useState(
     isEmptyArray(layers.info) || isEmptyObject(parameter) || 
     isEmptyObject(compile.optimizer) || isEmptyStr(compile.loss) ||
     isEmptyObject(xs) || isEmptyObject(ys)
   );
 
+  // 학습 버튼 활성화
   useEffect(() => {
     setDisabled(    
       isEmptyArray(layers.info) || isEmptyObject(parameter) || 
@@ -79,7 +85,8 @@ const Fit = () => {
   async function makeModel() {
     try{
       var preTrainModel = model;
-  
+      
+      // 이미 모델이 생성되어있는 경우
       if (!isEmptyObject(preTrainModel) && window.confirm("현재 모델이 존재합니다. 재학습을 진행하시겠습니까?\n 예: 기존 모델 재학습, 아니요: 새로운 모델 생성")){
       } else {
         preTrainModel = await createModel(layers);

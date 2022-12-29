@@ -21,6 +21,7 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout/>}>
+        {/* 앱 사용 설명 */}
         <Route path="/" element={<Navigate to="docs/"/>}/>
         <Route path="docs/" element={<Home/>}>
           <Route path="" element={<Docs/>}/>
@@ -31,6 +32,7 @@ function Router() {
           <Route path="predict" element={<PredictDoc/>}/>
           <Route path="analytic" element={<AnalyticDoc/>}/>
         </Route>
+        {/* 앱 기능 페이지 */}
         <Route path='predict/*' element={<Predict/>}/>
         <Route path='fit' element={<Fit /> }/>
         <Route path='loadData' element={<LoadData/>}/>

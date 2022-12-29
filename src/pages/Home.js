@@ -1,7 +1,7 @@
-import React , { useEffect } from "react";
+import React , { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import mainStyle from "../components/Common/component.module.css";
 import Title from "../components/Common/title/title";
+import mainStyle from "../static/css/component.module.css";
 
 function Home() {
     useEffect(() => {

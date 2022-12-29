@@ -4,7 +4,7 @@ import { isEmptyArray } from "../Common/module/checkEmpty";
 import { toArray, toOption } from "../Common/module/option";
 import { preprocessingActions } from "../../reducers/preprocessingSlice";
 import Inputs from "../Common/inputs/Inputs";
-import "../Common/table/scrollStyle.css";
+import "../../static/css/scrollStyle.css";
 
 export const PreprocessingOptions = ({children, preprocess, ...props}) => {
   const style = {

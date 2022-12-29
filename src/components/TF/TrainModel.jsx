@@ -1,4 +1,5 @@
 import { createOptimizer } from "./CreateModel"; 
+import * as tf from "@tensorflow/tfjs";
 
 export async function trainModel(model, xs, ys, compile, parameter) {
   /* 
@@ -20,7 +21,7 @@ export async function trainModel(model, xs, ys, compile, parameter) {
   model.compile({
     optimizer: createOptimizer(compile.optimizer),
     loss: compile.loss,
-    metrics: ['accuracy']
+    metrics: [compile.metrics]
   })
 
   

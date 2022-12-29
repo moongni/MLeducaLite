@@ -87,7 +87,7 @@ export function getDtype(data) {
     const ret = {};
 
     // 열 별 dtype 매핑
-    if ( columns.length === dtype.length ) {
+    if ( columns.length == dtype.length ) {
         for(var i = 0; i < columns.length ; i++) {
             ret[columns[i]] = dtype[i];
         }

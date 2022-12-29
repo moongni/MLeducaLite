@@ -15,16 +15,18 @@ import { testActions } from "../reducers/testSlice";
 import { preprocessingActions } from "../reducers/preprocessingSlice";
 import { dataActions } from "../reducers/dataSlice";
 import { FiDatabase } from "react-icons/fi";
-import style from "../components/Common/component.module.css";
+import style from "../static/css/component.module.css";
 import * as dfd from "danfojs";
 
 const LoadData = () => {
     const dispatch = useDispatch();
 
+    // data redux
     const data = useSelector( state => state.data );
 
-    const [ url, setUrl ] = useState("");
     const [ isLoading, setLoading ] = useState(false);
+
+    // 데이터 뷰 정보
     const [ nData, setNData ] = useState(5);
     const [ viewData, setViewData ] = useState({
         'columns': [],
@@ -38,6 +40,8 @@ const LoadData = () => {
     }, [ data ])
 
     // url 불러오기 함수
+    const [ url, setUrl ] = useState("");
+
     const onClickHandler = () => {
         setLoading(true);
         

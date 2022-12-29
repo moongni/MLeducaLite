@@ -7,17 +7,20 @@ import Title from "../Common/title/title";
 import { Button } from "../Common/button/Button";
 import { settingActions } from "../../reducers/settingSlice";
 import { AiOutlineControl } from "react-icons/ai";
-import mainStyle from "../Common/component.module.css";
+import mainStyle from "../../static/css/component.module.css";
 import data from "../../data/data.json"
 
 function Params({ ...props }){
     const dispatch = useDispatch();
 
+    // 사이드 Nav를 위한 Ref
     const paramRef = useNav('Param');
     
-    const [ value, setValue ] = useState({});
     const [ disabled, setDisabled ] = useState(false);
+
+    const [ value, setValue ] = useState({});
     
+    // 파라미터 Input 데이터 
     const dataForInputs = data.Parameters
     
     // 파라미터 적용 함수

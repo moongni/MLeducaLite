@@ -24,9 +24,9 @@ export function selectColumn(data, columns) {
     */
     const newData = new Object();
 
-    for (const column of columns) {
+    columns.map(column => {
         newData[column] = data[column]; 
-    }
+    })
 
     return newData;
 }

@@ -19,8 +19,6 @@ const Contents = ({...props}) => {
             return <MultiSelectInput {...props}/>
         case "bool":
             return <BoolInput {...props}/>
-        default:
-            return;
     }
 }
 

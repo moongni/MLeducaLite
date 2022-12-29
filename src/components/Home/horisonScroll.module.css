@@ -1,4 +1,5 @@
-@import "../../App.css";
+@import "../../static/css/App.css";
+
 .cardContainer {
     background-color: var(--fs-bg-color); 
     border-radius: 1em;

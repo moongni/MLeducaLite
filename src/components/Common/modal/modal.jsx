@@ -166,8 +166,8 @@ export const ModelSelectModal = ({ modalShow, setModalShow, ...props }) => {
         event.preventDefault();
 
         try {
-            if (currentTab === '1') {
-                if (isEmptyStr(locValue) || locValue === "model List") {
+            if (currentTab == '1') {
+                if (isEmptyStr(locValue) || locValue == "model List") {
                     throw new Error("불러올 모델을 선택해주세요");
                 }
                 
@@ -214,7 +214,7 @@ export const ModelSelectModal = ({ modalShow, setModalShow, ...props }) => {
     ]
 
     const tabContent = ( currentTab ) => {
-        const curContent = tabInfo.filter(tab => `${tab.id}` === currentTab);
+        const curContent = tabInfo.filter(tab => `${tab.id}` == currentTab);
         
         switch (curContent[0].title) {
             case "localstorage":

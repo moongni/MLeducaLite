@@ -14,7 +14,8 @@ const initialState = {
 
     compile: {
         optimizer: {},
-        loss: ""
+        loss: "",
+        metrics: ""
     }
 };
 
@@ -86,17 +87,23 @@ const settingSlice = createSlice({
         },
 
         // compile function
-        setOptimizer(state, action){
+        setOptimizer(state, action) {
             state.compile.optimizer = action.payload;
         },
-        setLoss(state, action){
+        setLoss(state, action) {
             state.compile.loss = action.payload;
+        },
+        setMetrics(state, action) {
+            state.compile.metrics = action.payload;
         },
         removeOptimizer(state, action) {
             state.compile.optimizer = {};
         },
-        removeLoss(state, action){
+        removeLoss(state, action) {
             state.compile.loss = "";
+        },
+        removeMetrics(state, action) {
+            state.compile.metrics = "";
         },
         initCompile(state, action) {
             state.compile.optimizer = {};
@@ -116,7 +123,8 @@ const settingSlice = createSlice({
         
             state.compile = {
                 optimizer: {},
-                loss: ""
+                loss: "",
+                metrics: ""
             }
         }
     }

@@ -16,20 +16,14 @@ import { preprocessingActions } from "../reducers/preprocessingSlice";
 import { testActions } from "../reducers/testSlice";
 import { trainActions } from "../reducers/trainSlice";
 import { MdOutlineToc } from "react-icons/md"
-import mainStyle from '../components/Common/component.module.css';
+import mainStyle from '../static/css/component.module.css';
 
+// 훈련셋 테스트셋 나누는 함수
 const splitTrainTest = async (labelData, featureData, trainRatio) => {
-    /* 
-        labelData: Object
-        featureData: Object
-        trainRatio: Number
-
-        return Object
-    */
-
     const numSample = Object.values(labelData)[0].length;
 
-    if ( numSample !== Object.values(featureData)[0].length ) {
+    // 기저 조건: 훈련셋과 테스트셋 길이가 다른경우
+    if ( numSample != Object.values(featureData)[0].length ) {
         return {
             isError: true,
             errorData: {
@@ -80,20 +74,24 @@ const splitTrainTest = async (labelData, featureData, trainRatio) => {
 
 const Preprocessing = () => {
     const dispatch = useDispatch();
-
+    
+    const [ isLoading, setLoading ] = useState(false);
+    
+    // redux 정보
     const data = useSelector( state => state.data.data );
     const dataColumns = useSelector( state => state.data.columns );
-
     const trainX = useSelector( state => state.train.feature );
     const trainY = useSelector( state => state.train.label );
     const process = useSelector( state => state.preprocess.train );
     const testX = useSelector( state => state.test.feature );
     const testY = useSelector( state => state.test.label );
-
-    const [ isLoading, setLoading ] = useState(false);
-    const [ splitRatio, setSplitRatio ] = useState();
-    const [ nData, setNData ] = useState({"trainNData": 5, "testNData": 5});
     
+    // 훈련셋 테스트 셋 나누기 비율
+    const [ splitRatio, setSplitRatio ] = useState();
+    
+    // 데이터 뷰 정보
+    const [ nData, setNData ] = useState({"trainNData": 5, "testNData": 5});
+
     const initData = {
         'columns': [],
         'data': {},
@@ -142,7 +140,7 @@ const Preprocessing = () => {
             const { labelData, featureData } = await preprocess(selectColumn(data, trainY.columns), selectColumn(data, trainX.columns), process);
 
             // 훈련 셋 비율에 따라 데이터 저장
-            if ( splitRatio === 1.0 || splitRatio === null) {
+            if ( splitRatio == 1.0 || splitRatio == null) {
                 dispatch(trainActions.setData({
                     title: "feature",
                     data: featureData

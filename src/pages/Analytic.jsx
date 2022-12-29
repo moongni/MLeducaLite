@@ -8,9 +8,9 @@ import { ChartModal } from "../components/Common/modal/SaveModal";
 import Title from "../components/Common/title/title";
 import { LayerBoard, SettingBoard } from "../components/ModelDashBoard/Board";
 import { Loader } from "../components/Common/loader/Loader";
-import mainStyle from "../components/Common/component.module.css";
 import { Button } from "../components/Common/button/Button";
 import Inputs from "../components/Common/inputs/Inputs";
+import mainStyle from "../static/css/component.module.css";
 import { Bubble, Line } from "react-chartjs-2";
 import {
     Chart as ChartJS,
@@ -36,24 +36,29 @@ ChartJS.register(
 );
 
 const Analytic = () => {
+    // 히스토리 redux
     const history = useSelector( state => state.history.info );
     
     const [ model, setModel ] = useOutletContext();
 
     const [ isLoading, setLoading ] = useState(false);
+
+    // 모달 설정 정보
     const [ modelModal, setModelModal ] = useState(false);
     const [ settingModal, setSettingModal ] = useState(false);
     const [ historyModal, setHistoryModal ] = useState(false);
     const [ chartModal, setChartModal ] = useState(false);
 
-    const [ histData, setHistData ] = useState({
-        datasets: []
-    });
+    // 산점도 데이터
     const [ plotData, setPlotData ] = useState({
         datasets: []
     });
     const [ plotOpt, setPlotOpt ] = useState({});
-
+    
+    // 라인그래프 데이터
+    const [ histData, setHistData ] = useState({
+        datasets: []
+    });
     const histOpt = {
         reponsive: true,
         interaction: {
@@ -84,38 +89,24 @@ const Analytic = () => {
         }
     }
 
-    // 히스토리 데이터 뷰 업데이트
+    // 히스토리 라인그래프 데이터 업데이트
     useEffect(() => {
-        if ( !isEmptyObject(history) && 
-             !isEmptyArray(history.history.loss) &&
-             !isEmptyArray(history.history.acc) ) {
+        if ( !isEmptyObject(history) && !isEmptyObject(history.history) ) {
+            var newDatasets = [];
+
+            for( const [ name, values ] of Object.entries(history.history)) {
+                var data = {
+                    "label": name,
+                    data: values,
+                    fill: false
+                }
+
+                newDatasets.push(data);
+            }
+
             setHistData({
                 labels: history.epoch,
-                datasets: [
-                    {
-                        label: "loss",
-                        data: history.history.loss,
-                        fill: false,
-                        backgroundColor: "rgba(255, 99, 71, 0.05)",
-                        borderColor: "rgba(255, 99, 71, 1)",
-                        pointBackgroundColor: "rgba(255, 99, 71, 1)",
-                        pointBorderColor: "rgba(255, 99, 71, 1)",
-                        pointHoverBackgroundColor: "rgba(255, 99, 71, 1)",
-                        pointHoverBorderColor: "rgba(255, 99, 71, 1)",
-                    },
-                    {
-                        label: "accuracy",
-                        data: history.history.acc,
-                        fill: false,
-                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                        borderColor: "rgba(78, 115, 223, 1)",
-                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-
-                    }
-                ]
+                datasets: newDatasets
             });
         }
     }, [ history ])
@@ -229,6 +220,7 @@ const Analytic = () => {
 }
 
 const PlotData = ({setPlotData, setOption, modalShow, setModalShow, ...props}) => {
+    // 훈련셋 redux
     const trainSet = useSelector( state => state.train );
 
     const columns = trainSet.label.columns.concat(trainSet.feature.columns);
@@ -241,7 +233,7 @@ const PlotData = ({setPlotData, setOption, modalShow, setModalShow, ...props}) =
     const [ yTick, setYTick ] = useState("");
     const [ viewOptions, setViewOptions ] = useState([]);
 
-    // 플롯 데이터 뷰 업데이트
+    // 데이터 산점도 업데이트
     useEffect( () => {
         if ( !isEmptyStr(xTick) && !isEmptyStr(yTick) ){
             setOption({
@@ -260,7 +252,7 @@ const PlotData = ({setPlotData, setOption, modalShow, setModalShow, ...props}) =
                     }
                 }
             })
-            
+            // 옵션이 비어있는 경우
             if (isEmptyArray(viewOptions)) {
                 setPlotData({                    
                     datasets: [
@@ -276,7 +268,9 @@ const PlotData = ({setPlotData, setOption, modalShow, setModalShow, ...props}) =
                         },
                     ]
                 });
-            } else {
+            } 
+            // 옵션이 있는 경우
+            else {
                 var newDatasets = []
                 
                 for ( const [ idx, option ] of viewOptions.entries() ) {

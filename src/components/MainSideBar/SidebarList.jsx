@@ -8,18 +8,15 @@ import { FiDatabase } from "react-icons/fi";
 import { GoTriangleRight } from "react-icons/go"
 import { MdOutlineToc } from "react-icons/md"
 
-const Icon = props => {
-    switch (props.icon){
-        case 'IoMdAnalytics': return <IoMdAnalytics/>
-        case 'AiOutlineLineChart': return <AiOutlineLineChart/>
-        case 'FaFileExport': return <FaFileExport/>
-        case 'GoTriangleRight': return <GoTriangleRight/>
-        case 'AiOutlineControl': return <AiOutlineControl/>
-        case 'FiDatabase': return <FiDatabase/>
-        case 'MdOutlineToc': return <MdOutlineToc/>
-        default: return null
-    }
-};
+const IconMap = {
+        'IoMdAnalytics': <IoMdAnalytics/>,
+        'AiOutlineLineChart': <AiOutlineLineChart/>,
+        'FaFileExport': <FaFileExport/>,
+        'GoTriangleRight': <GoTriangleRight/>,
+        'AiOutlineControl': <AiOutlineControl/>,
+        'FiDatabase': <FiDatabase/>,
+        'MdOutlineToc': <MdOutlineToc/>,
+}
 
 export const SidebarList = ({children, ...props}) => {
     const [isShowMenu, setShowMenu] = useState(false);
@@ -29,7 +26,7 @@ export const SidebarList = ({children, ...props}) => {
             <div className='icon-link'>
                 <Link to={props.link}
                     onClick={()=> setShowMenu(props.clsName)}>
-                    <i><Icon icon={props.icon}></Icon></i>
+                    <i>{IconMap[props.icon]}</i>
                     <span className='link-name'>{props.name}</span>
                     {!isEmptyArray(props.subLinkName) && 
                         <i className='down ml-auto'><AiFillCaretDown /></i>}
